@@ -20,7 +20,7 @@ namespace AddressBoookSystem
         //Display Contact in address book
         public void DisplayContact()
         {
-           
+
             if (this.contactList.Count != 0)  //checking ContactList is empty or not
             {
                 foreach (Contacts data in this.contactList)
@@ -85,6 +85,19 @@ namespace AddressBoookSystem
                 }
                 else
                     Console.WriteLine("Error,No Contact With this Name");
+            }
+        }
+        //Method to Delete a contact of person
+        public void DeleteContact(string dName)
+        {
+            foreach (Contacts Data in this.contactList)
+            {
+                if (Data.firstName.Equals(dName))
+                {
+                    this.contactList.Remove(Data);
+                    Console.WriteLine("Contact is successfully Deleted");
+                    break;
+                }
             }
         }
     }

@@ -18,10 +18,8 @@ namespace AddressBoookSystem
             while (CONTINUE)
             {
                 Console.WriteLine("Enter your choice:");
-                Console.WriteLine("1.Add contacts");
-                Console.WriteLine("2.Display");
-                Console.WriteLine("3.Edit Details");
-                Console.WriteLine("0.Exit");
+                Console.WriteLine("1.Add contact 2.Display 3.Edit Contact 4.Delete Contact 0.Exit");
+
 
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
@@ -36,6 +34,11 @@ namespace AddressBoookSystem
                         Console.WriteLine("Enter the first name of person: ");
                         string name = Console.ReadLine();
                         addressDetail.EditContact(name);
+                        break;
+                    case 4:
+                        Console.WriteLine("Enter the first name of person: ");
+                        string dName = Console.ReadLine();
+                        addressDetail.DeleteContact(dName);
                         break;
                     case 0:
                         CONTINUE = false;
