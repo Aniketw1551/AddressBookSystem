@@ -13,7 +13,7 @@ namespace AddressBoookSystem
             Console.WriteLine("Welcome to AddressBookSystem program");
 
             AddressBook addressBook = new AddressBook();
-            addressBook.AddContact();
+            addressBook.ReadInput();
             Console.ReadLine();
         }
     }
