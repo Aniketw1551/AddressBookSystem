@@ -8,7 +8,9 @@ namespace AddressBoookSystem
 {
     public class AddressBookDetails
     {
-        List<Contacts> contactList = new List<Contacts>();
+        //Collection Class
+        private List<Contacts> contactList = new List<Contacts>();
+        private Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();
 
         //Method to Add Contact in address book
         public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber, string email)
@@ -17,7 +19,7 @@ namespace AddressBoookSystem
             this.contactList.Add(contactDetails);
         }
 
-        //Display Contact in address book
+        //Method to Display Contact in address book
         public void DisplayContact()
         {
 
