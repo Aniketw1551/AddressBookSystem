@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,8 @@ namespace AddressBoookSystem
 {
     public class AddressBook
     {
-        AddressBookDetails addressDetail = new AddressBookDetails();
         //created List of class Type
+        AddressBookDetails addressDetail = new AddressBookDetails();
         public void ReadInput()
         {
             bool CONTINUE = true;
@@ -17,7 +18,7 @@ namespace AddressBoookSystem
             //The loop will keep on till user exits from program
             while (CONTINUE)
             {
-                Console.WriteLine("Enter your choice:");
+                Console.WriteLine("Enter your choice: \n");
                 Console.WriteLine("1.Add contact 2.Display 3.Edit Contact 4.Delete Contact 5.Add Multiple Contacts 0.Exit \n");
 
 
@@ -32,8 +33,8 @@ namespace AddressBoookSystem
                         break;
                     case 3:
                         Console.WriteLine("Enter the first name of person: ");
-                        string name = Console.ReadLine();
-                        addressDetail.EditContact(name);
+                        string ename = Console.ReadLine();
+                        addressDetail.EditContact(ename);
                         break;
                     case 4:
                         Console.WriteLine("Enter the first name of person: ");
@@ -51,12 +52,10 @@ namespace AddressBoookSystem
                 }
             }
         }
-        /// <summary>
-        /// This method is used to add a new contact
-        /// </summary>
-        /// <param name="AddressBookDetails"></param>
         public static void AddDetails(AddressBookDetails addressDetail)
         {
+            Console.WriteLine("Give a name to your address book");
+            string addbookName = Console.ReadLine();
             Console.WriteLine("Enter first Name");
             string firstName = Console.ReadLine();
             Console.WriteLine("Enter Last Name");
@@ -68,14 +67,16 @@ namespace AddressBoookSystem
             Console.WriteLine("Enter State");
             string state = Console.ReadLine();
             Console.WriteLine("Enter Zipcode");
-            long zipCode = Convert.ToInt64(Console.ReadLine());
+            int zipCode = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Enter Phone Number");
             long phoneNumber = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Enter Email");
             string email = Console.ReadLine();
-            addressDetail.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
+
+            addressDetail.AddContactDetails(addbookName, firstName, lastName, address, city, state, zipCode, phoneNumber, email);
         }
 
+        
         //Method to Add Multiple Contacts
         public void AddMultipleContacts()
         {

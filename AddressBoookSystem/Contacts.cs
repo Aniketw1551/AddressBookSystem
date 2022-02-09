@@ -9,18 +9,20 @@ namespace AddressBoookSystem
     public class Contacts
     {
         // variables
-        public string firstName;
-        public string lastName;
-        public string address;
-        public string city;
-        public string state;
-        public long zipCode;
-        public long phoneNumber;
-        public string email;
+        public string addbookName { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string address { get; set; }
+        public string city { get; set;  }
+        public string state { get; set; }
+        public int zipCode { get; set; }
+        public long phoneNumber { get; set; }
+        public string email { get; set; }
 
         //// constructor which get user details
-        public Contacts(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber, string email)
+        public Contacts(string addbookName, string firstName, string lastName, string address, string city, string state, int zipCode, long phoneNumber, string email)
         {
+            this.addbookName = addbookName;
             this.firstName = firstName;
             this.lastName = lastName;
             this.address = address;
@@ -36,6 +38,7 @@ namespace AddressBoookSystem
         /// </summary>
         public void Display()
         {
+            Console.WriteLine("Address book name:{0}", this.addbookName);
             Console.WriteLine("First Name:{0}", this.firstName);
             Console.WriteLine("Last Name:{0}", this.lastName);
             Console.WriteLine("Address:{0}", this.address);

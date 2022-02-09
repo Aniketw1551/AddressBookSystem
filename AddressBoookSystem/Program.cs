@@ -11,10 +11,10 @@ namespace AddressBoookSystem
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to AddressBookSystem program");
-
             AddressBook addressBook = new AddressBook();
             addressBook.ReadInput();
             Console.ReadLine();
         }
     }
+
 }
