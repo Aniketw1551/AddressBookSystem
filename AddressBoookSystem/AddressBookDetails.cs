@@ -16,11 +16,20 @@ namespace AddressBoookSystem
         }
 
         //Method to Add Contact in address book
-        public void AddContactDetails(string addbookName, string firstName, string lastName, string address, string city, string state, int zipCode, long phoneNumber, string email)
+        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, int zipCode, long phoneNumber, string email)
         {
-            Contacts contactDetails = new Contacts(addbookName, firstName, lastName, address, city, state, zipCode, phoneNumber, email);
-            this.contactList.Add(contactDetails);
-           
+            // finding the data that already has the same first name
+            Contacts contact = this.contactList.Find(x =>x.firstName.Equals(firstName));
+            if (contact == null) // using if condition to add contact if not present 
+            {
+                Contacts contactDetails = new Contacts(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
+                this.contactList.Add(contactDetails);
+            }
+            else
+            {
+                Console.WriteLine("Person {0} is already exist in the address book", firstName); //printing message if person name is already in address book
+
+            }
         }
         //Method to Display Contact in address book
         public void DisplayContact()
@@ -95,11 +104,11 @@ namespace AddressBoookSystem
         //Method to Delete a contact deatils of person
         public void DeleteContact(string dName)
         {
-            foreach (Contacts Data in this.contactList)
+            foreach (Contacts c in this.contactList)
             {
-                if (Data.firstName.Equals(dName))
+                if (c.firstName.Equals(dName))
                 {
-                    this.contactList.Remove(Data);
+                    this.contactList.Remove(c);
                     Console.WriteLine("Contact is successfully Deleted");
                     break;
                 }
