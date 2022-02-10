@@ -10,7 +10,8 @@ namespace AddressBoookSystem
     public class AddressBook
     {
         //created List of class Type
-        AddressBookDetails addressDetail = new AddressBookDetails();
+        static AddressBookDetails addressDetails = new AddressBookDetails();
+        static Dictionary<string, AddressBookDetails> addressBook = new Dictionary<string, AddressBookDetails>();
         public void ReadInput()
         {
             bool CONTINUE = true;
@@ -19,30 +20,42 @@ namespace AddressBoookSystem
             while (CONTINUE)
             {
                 Console.WriteLine("Enter your choice: \n");
-                Console.WriteLine("1.Add contact 2.Display 3.Edit Contact 4.Delete Contact 5.Add Multiple Contacts 0.Exit \n");
+                Console.WriteLine("1.Add address book 2.Add contact 3.Display details 4.Edit Contact details 5.Delete Contact\n");
+                Console.WriteLine("6.Add Multiple Address book 7.Delete Address book 0.Exit\n");
 
 
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:
-                        AddDetails(addressDetail);
+                        AddressBook.AddressBookName();
                         break;
                     case 2:
-                        addressDetail.DisplayContact();
+                        AddDetails(AddressBook.AddBookName(addressBook));
                         break;
                     case 3:
-                        Console.WriteLine("Enter the first name of person: ");
-                        string ename = Console.ReadLine();
-                        addressDetail.EditContact(ename);
+                        addressDetails = AddressBook.AddBookName(addressBook);
+                        addressDetails.DisplayContact();
                         break;
                     case 4:
-                        Console.WriteLine("Enter the first name of person: ");
-                        string dName = Console.ReadLine();
-                        addressDetail.DeleteContact(dName);
+                        addressDetails = AddressBook.AddBookName(addressBook);
+                        Console.WriteLine("Enter the first name of person");
+                        string ename = Console.ReadLine();
+                        addressDetails.EditContact(ename);
                         break;
                     case 5:
-                        AddMultipleContacts();
+                        addressDetails = AddressBook.AddBookName(addressBook);
+                        Console.WriteLine("Enter the first name of person");
+                        string dname = Console.ReadLine();
+                        addressDetails.DeleteContact(dname);
+                        break;
+                    case 6:
+                        AddMultipleAddressBook();
+                        break;
+                    case 7:
+                        Console.WriteLine("Enter name of the address book name you want to delete: ");
+                        string addressBookName = Console.ReadLine();
+                        addressBook.Remove(addressBookName);
                         break;
                     case 0:
                         CONTINUE = false;
@@ -52,10 +65,14 @@ namespace AddressBoookSystem
                 }
             }
         }
-        public static void AddDetails(AddressBookDetails addressDetail)
+        public static void AddressBookName() //Method for creating address book in dictionary
         {
-            Console.WriteLine("Give a name to your address book");
-            string addbookName = Console.ReadLine();
+            Console.WriteLine("Enter name for your address book: ");
+            string addressbookname = Console.ReadLine();
+            addressBook.Add(addressbookname, addressDetails);
+        }
+        public static void AddDetails(AddressBookDetails addressDetails)
+        {
             Console.WriteLine("Enter first Name");
             string firstName = Console.ReadLine();
             Console.WriteLine("Enter Last Name");
@@ -73,20 +90,28 @@ namespace AddressBoookSystem
             Console.WriteLine("Enter Email");
             string email = Console.ReadLine();
 
-            addressDetail.AddContactDetails(addbookName, firstName, lastName, address, city, state, zipCode, phoneNumber, email);
+            addressDetails.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
         }
 
-        
-        //Method to Add Multiple Contacts
-        public void AddMultipleContacts()
+        //Method to Add Multiple Address books
+        public void AddMultipleAddressBook()
         {
-            Console.WriteLine("Please enter how many contact do you want to add");
+            Console.WriteLine("Please enter how many address book do you want to add: ");
             int Number = int.Parse(Console.ReadLine());
             for (int i = 1; i <= Number; i++)
             {
-                AddressBook.AddDetails(addressDetail);
+                AddressBook.AddressBookName();
             }
-            Console.WriteLine("All contacts added successfully \n");
+            Console.WriteLine("All address book added successfully \n");
+        }
+        //method to find the address of particular address book
+        public static AddressBookDetails AddBookName(Dictionary<string, AddressBookDetails> addBook)
+        {
+            addressBook = addBook;
+            Console.WriteLine("Enter address book name: ");
+            string name = Console.ReadLine();
+            AddressBookDetails address = addressBook[name];
+            return address;
         }
     }
 }

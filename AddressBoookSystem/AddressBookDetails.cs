@@ -9,15 +9,18 @@ namespace AddressBoookSystem
     public class AddressBookDetails
     {
         //Collection Class
-        private List<Contacts> contactList = new List<Contacts>();
-        private Dictionary<string, Contacts> addressBook = new Dictionary<string, Contacts>();
+        private List<Contacts> contactList;
+        public AddressBookDetails()
+        {
+            this.contactList = new List<Contacts>();
+        }
 
         //Method to Add Contact in address book
         public void AddContactDetails(string addbookName, string firstName, string lastName, string address, string city, string state, int zipCode, long phoneNumber, string email)
         {
             Contacts contactDetails = new Contacts(addbookName, firstName, lastName, address, city, state, zipCode, phoneNumber, email);
             this.contactList.Add(contactDetails);
-            this.addressBook.Add(addbookName, contactDetails);
+           
         }
         //Method to Display Contact in address book
         public void DisplayContact()
