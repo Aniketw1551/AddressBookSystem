@@ -21,7 +21,7 @@ namespace AddressBoookSystem
             {
                 Console.WriteLine("Enter your choice: \n");
                 Console.WriteLine("1.Add address book 2.Add contact 3.Display details 4.Edit Contact details 5.Delete Contact\n");
-                Console.WriteLine("6.Add Multiple Address book 7.Delete Address book 0.Exit\n");
+                Console.WriteLine("6.Add Multiple Address book 7.Delete Address book 8.Search specific person with city or state name 0.Exit\n");
 
 
                 int choice = Convert.ToInt32(Console.ReadLine());
@@ -56,6 +56,9 @@ namespace AddressBoookSystem
                         Console.WriteLine("Enter name of the address book name you want to delete: ");
                         string addressBookName = Console.ReadLine();
                         addressBook.Remove(addressBookName);
+                        break;
+                    case 8:
+                        AddressBookDetails.SearchPersonWithCityorStateName(addressBook);
                         break;
                     case 0:
                         CONTINUE = false;

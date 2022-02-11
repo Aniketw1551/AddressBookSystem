@@ -19,7 +19,7 @@ namespace AddressBoookSystem
         public void AddContactDetails(string firstName, string lastName, string address, string city, string state, int zipCode, long phoneNumber, string email)
         {
             // finding the data that already has the same first name
-            Contacts contact = this.contactList.Find(x =>x.firstName.Equals(firstName));
+            Contacts contact = this.contactList.Find(x => x.firstName.Equals(firstName));
             if (contact == null) // using if condition to add contact if not present 
             {
                 Contacts contactDetails = new Contacts(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
@@ -112,6 +112,33 @@ namespace AddressBoookSystem
                     Console.WriteLine("Contact is successfully Deleted");
                     break;
                 }
+            }
+        }
+        public static void SearchPersonWithCityorStateName(Dictionary<string, AddressBookDetails> addressDictionary)
+        {
+            List<Contacts> list = null;
+            Console.WriteLine("Enter City or State name to search specific person");
+            string name = Console.ReadLine();
+            foreach (var data in addressDictionary)
+            {
+                AddressBookDetails address = data.Value;
+                list = address.contactList.FindAll(a => a.city.Equals(name) || a.state.Equals(name));
+                if (list.Count > 0)
+                {
+                    DisplayList(list);
+                }
+            }
+            if (list == null)
+            {
+                Console.WriteLine("No person is present in the address book with same city or state name");
+            }
+        }
+        //Method to display the data in the list 
+        public static void DisplayList(List<Contacts> list)
+        {
+            foreach (var data in list)
+            {
+                data.Display();
             }
         }
     }
