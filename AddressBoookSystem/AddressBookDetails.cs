@@ -10,20 +10,44 @@ namespace AddressBoookSystem
     {
         //Collection Class
         private List<Contacts> contactList;
+        private List<Contacts> cityList;
+        private List<Contacts> stateList;
         public AddressBookDetails()
         {
             this.contactList = new List<Contacts>();
         }
-
         //Method to Add Contact in address book
-        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, int zipCode, long phoneNumber, string email)
+        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, int zipCode, long phoneNumber, string email, Dictionary<string, List<Contacts>> stateDictionary, Dictionary<string, List<Contacts>> cityDictionary)
         {
             // finding the data that already has the same first name
             Contacts contact = this.contactList.Find(x => x.firstName.Equals(firstName));
             if (contact == null) // using if condition to add contact if not present 
             {
+
                 Contacts contactDetails = new Contacts(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
                 this.contactList.Add(contactDetails);
+                if (!cityDictionary.ContainsKey(city))
+                {
+                    cityList = new List<Contacts>();
+                    cityList.Add(contactDetails);
+                    cityDictionary.Add(city, cityList);
+                }
+                else
+                {
+                    List<Contacts> cities = cityDictionary[city];
+                    cities.Add(contactDetails);
+                }
+                if (!stateDictionary.ContainsKey(state))
+                {
+                    stateList = new List<Contacts>();
+                    stateList.Add(contactDetails);
+                    stateDictionary.Add(state, stateList);
+                }
+                else
+                {
+                    List<Contacts> states = stateDictionary[state];
+                    states.Add(contactDetails);
+                }
             }
             else
             {
@@ -139,6 +163,19 @@ namespace AddressBoookSystem
             foreach (var data in list)
             {
                 data.Display();
+            }
+        }
+        public static void PrintCityandStateList(Dictionary<string, List<Contacts>> dictionary)
+        {
+            foreach (var data in dictionary)
+            {
+                Console.WriteLine("Details of a person in {0}", data.Key);
+                foreach (var p in data.Value)
+                {
+                    Console.WriteLine("{0} {1} {2} {3} {4} {5} {6}", p.firstName, p.lastName, p.address,
+                                                                   p.city, p.state, p.zipCode, p.phoneNumber, p.email);
+                }
+                Console.WriteLine("\n");
             }
         }
     }
