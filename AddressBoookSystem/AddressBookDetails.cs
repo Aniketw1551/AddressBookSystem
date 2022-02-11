@@ -23,7 +23,6 @@ namespace AddressBoookSystem
             Contacts contact = this.contactList.Find(x => x.firstName.Equals(firstName));
             if (contact == null) // using if condition to add contact if not present 
             {
-
                 Contacts contactDetails = new Contacts(firstName, lastName, address, city, state, zipCode, phoneNumber, email);
                 this.contactList.Add(contactDetails);
                 if (!cityDictionary.ContainsKey(city))
@@ -138,6 +137,7 @@ namespace AddressBoookSystem
                 }
             }
         }
+        // Method to search person by city or state name
         public static void SearchPersonWithCityorStateName(Dictionary<string, AddressBookDetails> addressDictionary)
         {
             List<Contacts> list = null;
@@ -165,6 +165,7 @@ namespace AddressBoookSystem
                 data.Display();
             }
         }
+        // Method to display the details  of person by city or state
         public static void PrintCityandStateList(Dictionary<string, List<Contacts>> dictionary)
         {
             foreach (var data in dictionary)
@@ -178,5 +179,13 @@ namespace AddressBoookSystem
                 Console.WriteLine("\n");
             }
         }
-    }
+        // Method to get no of person by city or state
+        public static void CountofPerson(Dictionary<string, List<Contacts>> dictionary)
+        {
+            foreach (var p in dictionary)
+            {
+                Console.WriteLine("Number of person/s {0}:", p.Value.Count);
+            }
+        }
+    }           
 }
