@@ -35,8 +35,8 @@ namespace AddressBoookSystem
         {
             return $"{firstName}{lastName}{address}{city}{state}{zipCode}{phoneNumber}{email}";
         }
-            // Method to Display the contact details
-            public void Display()
+        // Method to Display the contact details
+        public void Display()
         {
             Console.WriteLine("First Name:{0}", this.firstName);
             Console.WriteLine("Last Name:{0}", this.lastName);

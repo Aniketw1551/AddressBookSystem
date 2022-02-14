@@ -11,6 +11,7 @@ namespace AddressBoookSystem
     {
         readonly string filePath = @"C:\Users\Aniket\source\repos\AddressBookSystem\AddressBoookSystem\File\PersonData.txt";
         readonly string csvFilePath = @"C:\Users\Aniket\source\repos\AddressBookSystem\AddressBoookSystem\File\CSVData.csv";
+        readonly string jsonFilePath = @"C:\Users\Aniket\source\repos\AddressBookSystem\AddressBoookSystem\File\JsonData.json";
         static AddressBookDetails addressDetails = new AddressBookDetails();
         static Dictionary<string, AddressBookDetails> addressBook = new Dictionary<string, AddressBookDetails>();
         static Dictionary<string, List<Contacts>> cityDictionary = new Dictionary<string, List<Contacts>>();
@@ -28,7 +29,7 @@ namespace AddressBoookSystem
                 Console.WriteLine("6.Add Multiple Address book 7.Delete Address book 8.Search specific person with city or state name\n");
                 Console.WriteLine("9.Check person by city or state name 10.Count of person/s by city or state 11.Sorting Address book\n");
                 Console.WriteLine("12.Sorting by city,state or zipcode 13.Read or write data using FileIO \n");
-                Console.WriteLine("14.Read or write data using CSV file 0.Exit\n");
+                Console.WriteLine("14.Read or write data using CSV file 15.Read or write data using json file 0.Exit\n");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -77,7 +78,7 @@ namespace AddressBoookSystem
                         string state = Console.ReadLine(); 
                         AddressBookDetails.CountofPerson(stateDictionary,state);
                         break;
-                        case 11:
+                    case 11:
                         Console.WriteLine("Sorting person names in address boook alphabetically: ");
                         foreach (var data in addressBook.OrderBy(x => x.Key))
                         {
@@ -88,12 +89,16 @@ namespace AddressBoookSystem
                         AddressBookDetails.SortData(cityDictionary);
                         break;
                     case 13:
-                        FileOperations.WriteInTextFile(addressBook,filePath);
+                        FileOperations.WriteInTextFile(addressBook, filePath);
                         FileOperations.ReadFromTextFile(filePath);
                         break;
                     case 14:
                         CsvHelper.WriteIntoCSVFile(addressBook, csvFilePath);
                         CsvHelper.ReadFromCSVFile(csvFilePath);
+                        break;
+                    case 15:
+                        Json.WriteIntoJSONFile(addressBook, jsonFilePath);
+                        Json.ReadFromJSONFile(jsonFilePath);
                         break;
                     case 0:
                         CONTINUE = false;
