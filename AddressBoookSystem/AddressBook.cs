@@ -24,7 +24,7 @@ namespace AddressBoookSystem
                 Console.WriteLine("Enter your choice: \n");
                 Console.WriteLine("1.Add address book 2.Add contact 3.Display details 4.Edit Contact details 5.Delete Contact\n");
                 Console.WriteLine("6.Add Multiple Address book 7.Delete Address book 8.Search specific person with city or state name\n");
-                Console.WriteLine("9.Check person by city or state name 10.Count of person/s by city or state 0.Exit\n");
+                Console.WriteLine("9.Check person by city or state name 10.Count of person/s by city or state 11.Sorting Address book 0.Exit\n");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -70,6 +70,13 @@ namespace AddressBoookSystem
                         AddressBookDetails.CountofPerson(cityDictionary);
                         Console.WriteLine("By state: ");
                         AddressBookDetails.CountofPerson(stateDictionary);
+                        break;
+                        case 11:
+                        Console.WriteLine("Sorting person names in address boook alphabetically: ");
+                        foreach (var data in addressBook.OrderBy(x => x.Key))
+                        {
+                            Console.WriteLine("{0}", data.Key);
+                        }
                         break;
                     case 0:
                         CONTINUE = false;
