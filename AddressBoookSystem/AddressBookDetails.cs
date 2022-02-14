@@ -180,12 +180,47 @@ namespace AddressBoookSystem
             }
         }
         // Method to get no of person by city or state
-        public static void CountofPerson(Dictionary<string, List<Contacts>> dictionary)
+        public static void CountofPerson(Dictionary<string, List<Contacts>> dictionary, string name)
         {
-            foreach (var p in dictionary)
+            if (dictionary.ContainsKey(name))
             {
-                Console.WriteLine("Number of person/s {0}:", p.Value.Count);
+                foreach (var p in dictionary)
+                {
+                    Console.WriteLine("Number of person/s {0}:", p.Value.Count);
+                    break;
+                }
             }
         }
-    }           
+        // Method to sort the data by zipcode,city and state
+        public static void SortData(Dictionary<string, List<Contacts>> dictionary)
+        {
+            //storing the result in the list and displaying the result
+            List<Contacts> list = new List<Contacts>();
+            foreach (var data in dictionary)
+            {
+                foreach (var item in data.Value)
+                {
+                    list.Add(item);
+                }
+            }
+            Console.WriteLine("\nDisplaying the person list based on City");
+            //display the sorted value based on city
+            foreach (var item in list.OrderBy(detail => detail.city))
+            {
+                item.Display();
+            }
+            Console.WriteLine("\nDisplaying the person list based on state");
+            //display the sorted value based on state
+            foreach (var item in list.OrderBy(detail => detail.state))
+            {
+                item.Display();
+            }
+            Console.WriteLine("\nDisplaying the person list based on ZipCode");
+            //display the sorted value based on zipCode
+            foreach (var item in list.OrderBy(detail => detail.zipCode))
+            {
+                item.Display();
+            }
+        }
+    }
 }

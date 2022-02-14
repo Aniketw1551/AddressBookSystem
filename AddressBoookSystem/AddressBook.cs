@@ -24,7 +24,8 @@ namespace AddressBoookSystem
                 Console.WriteLine("Enter your choice: \n");
                 Console.WriteLine("1.Add address book 2.Add contact 3.Display details 4.Edit Contact details 5.Delete Contact\n");
                 Console.WriteLine("6.Add Multiple Address book 7.Delete Address book 8.Search specific person with city or state name\n");
-                Console.WriteLine("9.Check person by city or state name 10.Count of person/s by city or state 11.Sorting Address book 0.Exit\n");
+                Console.WriteLine("9.Check person by city or state name 10.Count of person/s by city or state 11.Sorting Address book\n");
+                Console.WriteLine("12.Sorting by city,state or zipcode 0.Exit\n");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -66,10 +67,12 @@ namespace AddressBoookSystem
                         AddressBookDetails.PrintCityandStateList(stateDictionary);
                         break;
                     case 10:
-                        Console.WriteLine("By city: ");
-                        AddressBookDetails.CountofPerson(cityDictionary);
-                        Console.WriteLine("By state: ");
-                        AddressBookDetails.CountofPerson(stateDictionary);
+                        Console.WriteLine("Enter city name: ");
+                        string city = Console.ReadLine();
+                        AddressBookDetails.CountofPerson(cityDictionary,city);
+                        Console.WriteLine("Enter state name: ");
+                        string state = Console.ReadLine(); 
+                        AddressBookDetails.CountofPerson(stateDictionary,state);
                         break;
                         case 11:
                         Console.WriteLine("Sorting person names in address boook alphabetically: ");
@@ -77,6 +80,9 @@ namespace AddressBoookSystem
                         {
                             Console.WriteLine("{0}", data.Key);
                         }
+                        break;
+                    case 12:
+                        AddressBookDetails.SortData(cityDictionary);
                         break;
                     case 0:
                         CONTINUE = false;
