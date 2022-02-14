@@ -9,6 +9,7 @@ namespace AddressBoookSystem
 {
     public class AddressBook
     {
+        readonly string filePath = @"C:\Users\Aniket\source\repos\AddressBookSystem\AddressBoookSystem\File\PersonData.txt";
         static AddressBookDetails addressDetails = new AddressBookDetails();
         static Dictionary<string, AddressBookDetails> addressBook = new Dictionary<string, AddressBookDetails>();
         static Dictionary<string, List<Contacts>> cityDictionary = new Dictionary<string, List<Contacts>>();
@@ -25,7 +26,7 @@ namespace AddressBoookSystem
                 Console.WriteLine("1.Add address book 2.Add contact 3.Display details 4.Edit Contact details 5.Delete Contact\n");
                 Console.WriteLine("6.Add Multiple Address book 7.Delete Address book 8.Search specific person with city or state name\n");
                 Console.WriteLine("9.Check person by city or state name 10.Count of person/s by city or state 11.Sorting Address book\n");
-                Console.WriteLine("12.Sorting by city,state or zipcode 0.Exit\n");
+                Console.WriteLine("12.Sorting by city,state or zipcode 13.Read or write data using FileIO 0.Exit\n");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
@@ -83,6 +84,10 @@ namespace AddressBoookSystem
                         break;
                     case 12:
                         AddressBookDetails.SortData(cityDictionary);
+                        break;
+                    case 13:
+                        FileOperations.WriteInTextFile(addressBook,filePath);
+                        FileOperations.ReadFromTextFile(filePath);
                         break;
                     case 0:
                         CONTINUE = false;

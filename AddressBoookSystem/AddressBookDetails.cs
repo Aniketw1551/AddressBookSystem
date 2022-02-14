@@ -66,7 +66,15 @@ namespace AddressBoookSystem
                 }
             }
             else
-                Console.WriteLine("No Contacts in AddressBook");
+                Console.WriteLine("No Contacts in AddressBook\n");
+        }
+        //Method to get contacts 
+        public List<Contacts> getContacts()
+        {
+            if (contactList.Count == 0)
+                return null;
+            else
+                return contactList;
         }
         public void EditContact(string ename) //Method to Edit Contact 
         {
@@ -203,19 +211,19 @@ namespace AddressBoookSystem
                     list.Add(item);
                 }
             }
-            Console.WriteLine("\nDisplaying the person list based on City");
+            Console.WriteLine("\nDisplaying the person list based on City: ");
             //display the sorted value based on city
             foreach (var item in list.OrderBy(detail => detail.city))
             {
                 item.Display();
             }
-            Console.WriteLine("\nDisplaying the person list based on state");
+            Console.WriteLine("\nDisplaying the person list based on state: ");
             //display the sorted value based on state
             foreach (var item in list.OrderBy(detail => detail.state))
             {
                 item.Display();
             }
-            Console.WriteLine("\nDisplaying the person list based on ZipCode");
+            Console.WriteLine("\nDisplaying the person list based on ZipCode: ");
             //display the sorted value based on zipCode
             foreach (var item in list.OrderBy(detail => detail.zipCode))
             {
