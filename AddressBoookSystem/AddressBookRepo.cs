@@ -109,4 +109,74 @@ namespace AddressBoookSystem
                 this.connection.Close();
             }
         }
+        //retrieve by city or state
+        public void RetrieveByCityOrState()
+        {
+            ContactModel model = new ContactModel();
+            try
+            {
+                using (this.connection)
+                {
+                    this.connection.Open();
+                    string query = "select * from Contact where city = 'Bikaner' or state = 'Telangana';";
+                    SqlCommand command = new SqlCommand(query, this.connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            model.Firstname = reader.GetString(1);
+                            model.Lastname = reader.GetString(2);
+                            model.City = reader.GetString(4);
+                            model.Phone = reader.GetString(7);
+                            Console.WriteLine(model.Firstname + " " + model.Lastname + " " + model.City + " " + model.Phone);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No contacts match the City or State");
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+        //Add new Contact to DB
+        public void AddNewContact()
+        {
+            string query = "INSERT INTO contact (first_name,last_name,address,city,state,zip,phone_no,email,book_id) VALUES('Rakesh','Singh','Waterfront','Nagpur','Maharashtra',569180,'5049371295,'Rakesh@gmail.com','BK3');" +
+                "select * from contact c where first_name = 'Rakesh';";
+            try
+            {
+                using (this.connection)
+                {
+                    this.connection.Open();
+                    SqlCommand command = new SqlCommand(query, this.connection);
+                    //Executes Sql statement to Update in DB
+                    var rows = command.ExecuteNonQuery();
+                    //Close Connection of DB
+                    this.connection.Close();
+                    if (rows != 0)
+                        Console.WriteLine("Contact successfully added in DB");
+                    else
+                        Console.WriteLine(rows);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.connection.Close();
+            }
+        }
+    }
 }
