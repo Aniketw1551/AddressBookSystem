@@ -24,7 +24,7 @@ namespace AddressBoookSystem
             //The loop will keep on unill user exits from program
             while (CONTINUE)
             {
-                Console.WriteLine("Enter your choice: \n");
+                Console.WriteLine("\nEnter your choice: \n");
                 Console.WriteLine("1.Add address book 2.Add contact 3.Display details 4.Edit Contact details 5.Delete Contact\n");
                 Console.WriteLine("6.Add Multiple Address book 7.Delete Address book 8.Search specific person with city or state name\n");
                 Console.WriteLine("9.Check person by city or state name 10.Count of person/s by city or state 11.Sorting Address book\n");
@@ -37,7 +37,7 @@ namespace AddressBoookSystem
                         AddressBook.AddressBookName();
                         break;
                     case 2:
-                        AddDetails(AddressBook.AddBookName(addressBook),cityDictionary,stateDictionary);
+                        AddDetails(AddressBook.AddBookName(addressBook), cityDictionary, stateDictionary);
                         break;
                     case 3:
                         addressDetails = AddressBook.AddBookName(addressBook);
@@ -114,7 +114,7 @@ namespace AddressBoookSystem
             string addressbookname = Console.ReadLine();
             addressBook.Add(addressbookname, addressDetails);
         }
-        public static void AddDetails(AddressBookDetails addressDetails, Dictionary<string, List<Contacts>> cityDictionary, Dictionary<string, List<Contacts>> stateDictionary)
+        public static void AddDetails(AddressBookDetails addressBookDetails, Dictionary<string, List<Contacts>> cityDictionary, Dictionary<string, List<Contacts>> stateDictionary)
         {
             Console.WriteLine("Enter first Name");
             string firstName = Console.ReadLine();
@@ -133,7 +133,7 @@ namespace AddressBoookSystem
             Console.WriteLine("Enter Email");
             string email = Console.ReadLine();
 
-            addressDetails.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber, email, cityDictionary, stateDictionary);
+            addressBookDetails.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber, email, stateDictionary, cityDictionary);
         }
 
         //Method to Add Multiple Address books

@@ -42,7 +42,7 @@ namespace AddressBoookSystem
         /// <param name="filePath"></param>
         public static void ReadFromTextFile(string filePath)
         {
-            Console.WriteLine("\n Data from text file\n");
+            Console.WriteLine("\nData from text file\n");
             using (StreamReader file = new StreamReader(filePath))
             {
                 string line;

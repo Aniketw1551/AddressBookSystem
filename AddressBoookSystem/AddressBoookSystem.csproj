@@ -73,6 +73,8 @@
   <ItemGroup>
     <Compile Include="AddressBook.cs" />
     <Compile Include="AddressBookDetails.cs" />
+    <Compile Include="AddressBookRepo.cs" />
+    <Compile Include="ContactModel.cs" />
     <Compile Include="Contacts.cs" />
     <Compile Include="CsvHelper.cs" />
     <Compile Include="FileOperations.cs" />
